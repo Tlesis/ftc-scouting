@@ -1,15 +1,3 @@
-import { PUBLIC_FTC_API_KEY } from "$env/static/public";
-
-export const EVENT_KEY = "";
-
-export const fetchOptions = {
-    headers: {
-        "accept": "application/json",
-        "X-Application-Origin": "21677scouting",
-        "X-TOA-Key": `${PUBLIC_FTC_API_KEY}=`
-    }
-};
-
 export type Json =
   | string
   | number
@@ -24,21 +12,60 @@ export interface Database {
       "scouting-data": {
         Row: {
           allianceColor: number
+          autoDrop: number | null
+          autoSpike: number | null
+          autoStage: number | null
+          autoYellow: boolean | null
+          endClimb: boolean | null
+          endDrone: number | null
+          endMosaics: number | null
+          endPark: boolean | null
           id: number
-          matchId: number
-          teamId: number
+          matchid: number
+          notes: string | null
+          teamid: number
+          teamProp: boolean | null
+          teleopDrop: number | null
+          teleopStage: number | null
+          won: boolean | null
         }
         Insert: {
           allianceColor: number
+          autoDrop?: number | null
+          autoSpike?: number | null
+          autoStage?: number | null
+          autoYellow?: boolean | null
+          endClimb?: boolean | null
+          endDrone?: number | null
+          endMosaics?: number | null
+          endPark?: boolean | null
           id?: number
-          matchId: number
-          teamId: number
+          matchid: number
+          notes?: string | null
+          teamid: number
+          teamProp?: boolean | null
+          teleopDrop?: number | null
+          teleopStage?: number | null
+          won?: boolean | null
         }
         Update: {
           allianceColor?: number
+          autoDrop?: number | null
+          autoSpike?: number | null
+          autoStage?: number | null
+          autoYellow?: boolean | null
+          endClimb?: boolean | null
+          endDrone?: number | null
+          endMosaics?: number | null
+          endPark?: boolean | null
           id?: number
-          matchId?: number
-          teamId?: number
+          matchid?: number
+          notes?: string | null
+          teamid?: number
+          teamProp?: boolean | null
+          teleopDrop?: number | null
+          teleopStage?: number | null
+          won?: boolean | null
         }
         Relationships: []
       }
