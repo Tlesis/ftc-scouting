@@ -29,7 +29,7 @@
     let matchid: string;
 
     // keep track of currently avaliable teams and which alliance they are on
-    /* $: match = ((match) => {
+    $: match = ((match) => {
         // if the match that was supplied as the param is null return empty arrays
         if (!match) return { red: [], blue: [] };
 
@@ -42,7 +42,7 @@
             // find all blue alliance teams and place them in an array
             blue: match.blue.filter((team) => !rows.some((row) => row.teamid === team))
         };
-    })(matches.find((match) => match.matchNumber === Number(matchid))); */
+    })(matches.find((match) => match.matchNumber === Number(matchid)));
 
     // make sure to locally unsubscribe from realtime updates (as to not get billed)
     onDestroy(() => supabase.channel("any").unsubscribe());
@@ -71,8 +71,8 @@
         <!-- spaces (&nbsp;) are needed to correctly maintain spacing on either orientation -->
         <strong class="text-center text-w">&nbsp;Teams Available to Scout:&nbsp;</strong>
         <div class="landscape:flex-row justify-center">
-            <!-- <p class="text-center font-bold text-red-600">{match.red.join(" ")}</p> -->
-            <!-- <p class="text-center font-bold text-link">{match.blue.join(" ")}</p> -->
+            <p class="text-center font-bold text-red-600">{match.red.join(" ")}</p>
+            <p class="text-center font-bold text-link">{match.blue.join(" ")}</p>
         </div>
     </div>
 

@@ -3,7 +3,7 @@ import type { PageServerLoad } from "./$types";
 import { fail, type Actions, redirect } from "@sveltejs/kit";
 import fetch from "node-fetch";
 
-/* export const load = (async ({ locals: { supabase } }) => {
+export const load = (async ({ locals: { supabase } }) => {
 
     const [matches, existing] = await Promise.all([
 
@@ -28,7 +28,7 @@ import fetch from "node-fetch";
 
     return { matches, existing };
 
-}) satisfies PageServerLoad; */
+}) satisfies PageServerLoad;
 
 export const actions = {
     default: async ({ request, locals: { supabase } }) => {
