@@ -1,1 +1,7 @@
-<p class="text-w">teleop</p>
+<script>
+    import Backdrop from "./Backdrop.svelte";
+    import Backstage from "./Backstage.svelte";
+</script>
+
+<Backdrop/>
+<Backstage/>

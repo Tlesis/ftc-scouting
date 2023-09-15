@@ -10,6 +10,9 @@ export interface ScoutingData {
     auto: Scoring;
     teamProp: boolean;
     autoSpike: Spike;
+    autoRandom: number;
+    autoYellow: number[];
+    autoPark: boolean;
 
     teleop: Scoring;
 
@@ -20,22 +23,21 @@ export interface ScoutingData {
 
     notes: string;
     won: boolean;
-
 }
 
 interface Scoring {
-    backdrop: Pixel[][];
+    backdrop: boolean[][];
     backstage: number;
 }
 
-enum Spike {
-    none,
-    spike1,
-    spike2,
-    spike3
+export enum Spike {
+    none = 0,
+    spike1 = 1,
+    spike2 = 2,
+    spike3 = 3
 }
 
-enum DroneDistance {
+export enum DroneDistance {
     field = 0,
     zone1 = 1,
     zone2 = 2,
@@ -44,12 +46,10 @@ enum DroneDistance {
     none = 5
 }
 
-export enum Pixel {
-    none,
-    white,
-    purple,
-    yellow,
-    green
+export enum AutoYellow {
+    unknown,
+    yes,
+    no
 }
 
 const defaultData: ScoutingData = {
@@ -60,28 +60,31 @@ const defaultData: ScoutingData = {
 
     auto: {
         backdrop: [
-            [Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none],
-            [Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none],
-            [Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none]
+            [false, false, false, false, false, false],
+            [false, false, false, false, false, false, false],
+            [false, false, false, false, false, false]
         ],
         backstage: 0
     },
     teamProp: false,
     autoSpike: Spike.none,
+    autoRandom: 1,
+    autoYellow: [-1, -1],
+    autoPark: false,
 
     teleop: {
         backdrop: [
-            [Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none],
-            [Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none],
-            [Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none],
-            [Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none],
-            [Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none],
-            [Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none],
-            [Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none],
-            [Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none],
-            [Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none],
-            [Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none],
-            [Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none, Pixel.none]
+            [false, false, false, false, false, false],
+            [false, false, false, false, false, false, false],
+            [false, false, false, false, false, false],
+            [false, false, false, false, false, false, false],
+            [false, false, false, false, false, false],
+            [false, false, false, false, false, false, false],
+            [false, false, false, false, false, false],
+            [false, false, false, false, false, false, false],
+            [false, false, false, false, false, false],
+            [false, false, false, false, false, false, false],
+            [false, false, false, false, false, false]
         ],
         backstage: 0
     },

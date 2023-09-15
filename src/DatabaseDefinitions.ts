@@ -13,6 +13,7 @@ export interface Database {
         Row: {
           allianceColor: number
           autoDrop: number | null
+          autoPark: boolean | null
           autoSpike: number | null
           autoStage: number | null
           autoYellow: boolean | null
@@ -32,6 +33,7 @@ export interface Database {
         Insert: {
           allianceColor: number
           autoDrop?: number | null
+          autoPark?: boolean | null
           autoSpike?: number | null
           autoStage?: number | null
           autoYellow?: boolean | null
@@ -51,6 +53,7 @@ export interface Database {
         Update: {
           allianceColor?: number
           autoDrop?: number | null
+          autoPark?: boolean | null
           autoSpike?: number | null
           autoStage?: number | null
           autoYellow?: boolean | null
