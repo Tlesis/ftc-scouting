@@ -29,16 +29,16 @@
         <span class="block max-w-0 group-hover:max-w-full transition-all duration-300 h-0.5 bg-gradient-to-r from-active to-w max-md:hidden"></span>
     </a>
     <div class="w-1/5 flex justify-around text-md text-w font-thin">
-        <a href="/data" class="group my-5 transition duration-300" data-sveltekit-preload-data="hover">
+        <a href="/data" class="group my-5 transition duration-300" data-sveltekit-reload>
             Data
             <span class="block max-w-0 group-hover:max-w-full transition-all duration-200 h-px bg-w max-md:hidden"></span>
         </a>
-        <a href="/data/ppg" class="group my-5 transition duration-300" data-sveltekit-preload-data="hover">
+        <a href="/data/ppg" class="group my-5 transition duration-300" data-sveltekit-reload>
             PPG
             <span class="block max-w-0 group-hover:max-w-full transition-all duration-200 h-px bg-w max-md:hidden"></span>
         </a>
         <!-- TODO: make matches page -->
-        <!-- <a href="/data/matches" class="max-md:hidden group my-5 transition duration-300" data-sveltekit-preload-data="hover">
+        <!-- <a href="/data/matches" class="max-md:hidden group my-5 transition duration-300" data-sveltekit-reload>
             Matches
             <span class="block max-w-0 group-hover:max-w-full transition-all duration-200 h-px bg-w"></span>
         </a> -->

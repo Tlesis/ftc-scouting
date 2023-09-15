@@ -5,10 +5,7 @@
     export let index: number;
     export let teams: TOATeams[];
 
-    console.log(teams);
-
     const ppg = $ppgStore[index];
-
     const percentileColor = (percentile: number) => {
         var ret = "";
         if (percentile >= 95)

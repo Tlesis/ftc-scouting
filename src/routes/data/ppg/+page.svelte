@@ -9,6 +9,8 @@
 
     export let data: PageData;
 
+    ppgStore.set(data.ppg);
+
     // sort by total points then by teleop points if total is the same
     $ppgStore.sort((a, b) => {
         if (a.pointTotal === b.pointTotal) {
