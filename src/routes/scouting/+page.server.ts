@@ -7,7 +7,7 @@ export const load = (async ({ locals: { supabase } }) => {
 
     const [matches, existing] = await Promise.all([
 
-        fetch(`https://theorangealliance.org/api/event/${EVENT_KEY}/matches`, fetchOptions),
+        fetch("https://theorangealliance.org/api/event/2223-KS-MKWLT/matches", fetchOptions),
             /* .then((response) => response.json() as Promise<TOAMatch[]>)
             .then((response) =>
                 response.filter((match) => match.tournament_level === 1)
