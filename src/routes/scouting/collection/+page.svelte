@@ -3,11 +3,14 @@
 </svelte:head>
 
 <script lang="ts">
-    import { ScoutingPage, scoutingData, scoutingPage } from "$lib/stores";
+    import { ScoutingPage, ppgStore, scoutingData, scoutingPage, setPPGData } from "$lib/stores";
     import type { PageData } from "./$types";
     import ScoreCollection from "./components/ScoreCollection.svelte";
 
     export let data: PageData;
+
+    ppgStore.set(data.ppg);
+    setPPGData($ppgStore, data.existing.teamid);
 
     $scoutingData.id = data.id;
     $scoutingData.matchid = data.existing.matchid;
