@@ -5,10 +5,10 @@ import fetch from "node-fetch";
 
 export const load = (async ({ locals: { supabase } }) => {
 
-    const [/* matches, */ existing] = await Promise.all([
+    const [matches, existing] = await Promise.all([
 
-        /* fetch(`https://theorangealliance.org/api/event/${EVENT_KEY}/matches`, fetchOptions)
-            .then((response) => response.json() as Promise<TOAMatch[]>)
+        fetch(`https://theorangealliance.org/api/event/${EVENT_KEY}/matches`, fetchOptions),
+            /* .then((response) => response.json() as Promise<TOAMatch[]>)
             .then((response) =>
                 response.filter((match) => match.tournament_level === 1)
                     .map((match) => ({
@@ -26,7 +26,7 @@ export const load = (async ({ locals: { supabase } }) => {
         })
     ]);
 
-    return { /* matches, */ existing };
+    return { matches, existing };
 
 }) satisfies PageServerLoad;
 
