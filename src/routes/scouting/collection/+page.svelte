@@ -1,5 +1,5 @@
 <svelte:head>
-    <title>Cerberus | Collection</title>
+    <title>CTEC Cerberus | Collection</title>
 </svelte:head>
 
 <script lang="ts">

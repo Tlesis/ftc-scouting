@@ -37,7 +37,10 @@ export enum Spike {
     none = 0,
     spike1 = 1,
     spike2 = 2,
-    spike3 = 3
+    spike3 = 3,
+    spikeCorrect1 = 11,
+    spikeCorrect2 = 12,
+    spikeCorrect3 = 13
 }
 
 export enum DroneDistance {

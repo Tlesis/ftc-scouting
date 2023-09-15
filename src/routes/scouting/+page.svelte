@@ -1,5 +1,5 @@
 <svelte:head>
-    <title>Cerberus | Scouting</title>
+    <title>CTEC Cerberus | Scouting</title>
 </svelte:head>
 
 <script lang="ts">

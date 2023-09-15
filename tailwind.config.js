@@ -12,7 +12,8 @@ export default {
 
                 "link": "#3b82f6",
                 "blue-alliance": "#1e3a8a",
-                "red-alliance": "#9f1239"
+                "red-alliance": "#9f1239",
+                "nav": "#21242c"
             }
         }
     },

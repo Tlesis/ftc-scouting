@@ -15,4 +15,10 @@
             class={`rounded shadow-sm p-5 ${($scoutingData.endPark) ? "bg-active" : "bg-inactive"} m-2`}
             on:click={() => { $scoutingData.endPark = !$scoutingData.endPark; $scoutingData.endClimb = false; }}></button>
     </div>
+    <div class="flex justify-between mx-4">
+        <h1 class="text-2xl text-w mx-auto mt-2">Win</h1>
+        <button
+            class={`rounded shadow-sm p-5 ${($scoutingData.won) ? "bg-active" : "bg-inactive"} m-2`}
+            on:click={() => $scoutingData.won = !$scoutingData.won}></button>
+    </div>
 </div>

@@ -1,5 +1,5 @@
 <svelte:head>
-    <title>Cerberus | Forgot Password</title>
+    <title>CTEC Cerberus | Forgot Password</title>
 </svelte:head>
 
 <script lang="ts">

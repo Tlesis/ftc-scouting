@@ -1,6 +1,5 @@
 <script lang="ts">
     import { scoutingData } from "$lib/stores";
-    import Auto from "./Auto.svelte";
 
     let first = ($scoutingData.autoYellow[0] === -1 && $scoutingData.autoYellow[1] === -1) ? true : false;
 
@@ -22,7 +21,6 @@
             checkedColor[i][j] = "bg-w";
         }
         first = false;
-
     };
 
     (() => {

@@ -15,7 +15,7 @@
         <EndgameBoxes/>
         <Mosaics/>
         <!-- notes -->
-        <div class="flex justify-center h-1/3 my-3">
+        <div class="flex justify-center h-1/4 my-3">
             <textarea
                 name="notes"
                 placeholder="Notes"

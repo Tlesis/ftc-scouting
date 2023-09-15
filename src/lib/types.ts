@@ -67,3 +67,13 @@ export enum AllianceColor {
     red,
     blue
 }
+
+export interface TOATeams {
+    event_participant_key: string;
+    event_key:             string;
+    team_key:              string;
+    team_number:           number;
+    is_active:             boolean;
+    card_status:           string | null;
+    team:                  Team;
+}
