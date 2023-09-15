@@ -14,7 +14,7 @@
 
     // callback fn for handling realtime updates with supabase
     const handleUpdate = async () => {
-        const { data, error } = await supabase.from("scouting-data").select("matchid, teamid");
+        const { data, error } = await supabase.from("scouting-data").select();
         if (error) return;
         existing = data;
     };
