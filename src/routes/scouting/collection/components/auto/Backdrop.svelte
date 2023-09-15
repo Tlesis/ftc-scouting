@@ -11,6 +11,10 @@
     ];
 
     const colorTailwind = (i: number, j: number) => {
+        if ($scoutingData.autoYellow[0] === i && $scoutingData.autoYellow[1] === j) {
+            $scoutingData.autoYellow = [-1, -1];
+        }
+
         if (first) {
             checkedColor[i][j] = "bg-yellow-400";
             $scoutingData.autoYellow = [i, j];
@@ -18,6 +22,7 @@
             checkedColor[i][j] = "bg-w";
         }
         first = false;
+
     };
 
     (() => {

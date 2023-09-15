@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { SupabaseClient } from "@supabase/supabase-js";
     import type { Database } from "../../../../DatabaseDefinitions";
-    import { ScoutingPage, scoutingData, scoutingPage } from "$lib/stores";
+    import { ScoutingPage, compileAndScore, scoutingData, scoutingPage } from "$lib/stores";
     import Auto from "./auto/Auto.svelte";
     import Endgame from "./endgame/Endgame.svelte";
     import Teleop from "./teleop/Teleop.svelte";
@@ -9,7 +9,10 @@
     export let supabase: SupabaseClient<Database>;
 
     const submit = () => {
-        console.log($scoutingData);
+        // $scoutingPage = ScoutingPage.loading;
+        const data = compileAndScore($scoutingData);
+
+        console.log({total: data.scoredData.auto + data.scoredData.teleop + data.scoredData.endgame, score: data.scoredData, compiled: data.compiledData});
     }
 </script>
 
