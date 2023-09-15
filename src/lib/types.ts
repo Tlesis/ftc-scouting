@@ -5,7 +5,7 @@ export const EVENT_KEY = "2223-KS-MKWLT";
 export const fetchOptions = {
     headers: {
         "accept": "application/json",
-        "X-Application-Origin": `${crypto.randomUUID()}`,
+        "X-Application-Origin": "FTC Team 21677 Scouting App",
         "X-TOA-Key": `${PUBLIC_FTC_API_KEY}=`
     }
 };
