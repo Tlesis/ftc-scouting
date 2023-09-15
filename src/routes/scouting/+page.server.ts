@@ -5,9 +5,9 @@ import fetch from "node-fetch";
 
 export const load = (async ({ locals: { supabase } }) => {
 
-    const [matches, existing] = await Promise.all([
+    const [matches/* , existing */] = await Promise.all([
 
-        fetch(`https://theorangealliance.org/api/event/${EVENT_KEY}/matches`, fetchOptions)
+        /* fetch(`https://theorangealliance.org/api/event/${EVENT_KEY}/matches`, fetchOptions)
             .then((response) => response.json() as Promise<TOAMatch[]>)
             .then((response) =>
                 response.filter((match) => match.tournament_level === 1)
@@ -18,7 +18,7 @@ export const load = (async ({ locals: { supabase } }) => {
 
                         blue: match.participants.filter((team) => team.station === 21 || team.station === 22)
                             .map((team) => team.team.team_number)
-                    }))),
+                    }))), */
 
         supabase.from("scouting-data").select().then(({ data, error }) => {
             if (error) throw fail(500, { error: error.message });
@@ -26,7 +26,7 @@ export const load = (async ({ locals: { supabase } }) => {
         })
     ]);
 
-    return { matches, existing };
+    return { matches/* , existing */ };
 
 }) satisfies PageServerLoad;
 
