@@ -9,7 +9,7 @@
     export let form: ActionData;
     export let data: PageData;
 
-    const { matches, supabase } = data;
+    const { /* matches, */ supabase } = data;
     let existing = data.existing;
 
     // callback fn for handling realtime updates with supabase
