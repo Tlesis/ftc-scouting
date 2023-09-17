@@ -1,4 +1,4 @@
-import { AllianceColor, EVENT_KEY, fetchOptions, type TOAMatch } from "$lib/types";
+import { AllianceColor, EVENT, fetchOptions, type FTCSchedule } from "$lib/types";
 import type { PageServerLoad } from "./$types";
 import { fail, type Actions, redirect } from "@sveltejs/kit";
 import fetch from "node-fetch";
@@ -7,19 +7,14 @@ export const load = (async ({ locals: { supabase } }) => {
 
     const [matches, existing] = await Promise.all([
 
-        fetch(`https://theorangealliance.org/api/event/${EVENT_KEY}/matches`, fetchOptions)
-            .then((response) => response.json() as Promise<TOAMatch[]>),
-            /* .then((response) =>
-                response.filter((match) => match.tournament_level === 1)
-                    .map((match) => ({
-                        matchNumber: Number(match.match_name.slice(6)),
-                        red: match.participants.filter((team) => team.station === 11 || team.station === 12)
-                            .map((team) => team.team.team_number),
+        fetch(`https://ftc-api.firstinspires.org/v2.0/${EVENT.season}/schedule/${EVENT.code}/qual/hybrid`, fetchOptions)
+            .then((response) => response.json() as Promise<FTCSchedule>)
+            .then((response) => response.schedule.map((match) => ({
+                matchNumber: match.matchNumber,
+                red: match.teams.filter((team) => team.station.slice(0, 1) === "R").map((team) => team.teamNumber),
+                blue: match.teams.filter((team) => team.station.slice(0, 1) === "B").map((team) => team.teamNumber)
+            }))),
 
-                        blue: match.participants.filter((team) => team.station === 21 || team.station === 22)
-                            .map((team) => team.team.team_number)
-                    }))),
- */
         supabase.from("scouting-data").select().then(({ data, error }) => {
             if (error) throw fail(500, { error: error.message });
             return data;
@@ -55,20 +50,25 @@ export const actions = {
         }
 
         /* upload data */
-        const res = await fetch(`https://theorangealliance.org/api/event/${EVENT_KEY}/matches`, fetchOptions);
+        const matchs = await fetch(`https://ftc-api.firstinspires.org/v2.0/${EVENT.season}/schedule/${EVENT.code}/qual/hybrid`, fetchOptions)
+            .then((response) => {
+                if (!response.ok) {
+                    throw fail(500, { error: "failed to fetch matches" });
+                }
+                return response.json() as Promise<FTCSchedule>;
+            })
+            .then((response) => response.schedule.map((match) => ({
+                matchNumber: match.matchNumber,
+                red: match.teams.filter((team) => team.station.slice(0, 1) === "R").map((team) => team.teamNumber),
+                blue: match.teams.filter((team) => team.station.slice(0, 1) === "B").map((team) => team.teamNumber)
+            })));
 
-        if (!res.ok)
-            throw fail(500);
+        let teamcolor = null;
 
-        const results = await res.json() as TOAMatch[];
-
-        const match = results.filter((match) => match.tournament_level === 1).find((match) => match.match_name.slice(6) === matchid);
-
-        const teamcolor = (() => {
-            if (match?.participants.filter((team) => team.station == 11 || team.station == 12).some((team) => team.team.team_number === Number(teamid))) return AllianceColor.red;
-            if (match?.participants.filter((team) => team.station == 21 || team.station == 22).some((team) => team.team.team_number === Number(teamid))) return AllianceColor.blue;
-            return null;
-        })();
+        if (matchs.find((match) => match.matchNumber === Number(matchid))?.red.includes(Number(teamid)))
+            teamcolor = AllianceColor.red;
+        else if (matchs.find((match) => match.matchNumber === Number(matchid))?.blue.includes(Number(teamid)))
+            teamcolor = AllianceColor.blue;
 
         if (teamcolor === null) {
             return fail(500, { error: "that team isn't available this match" });
