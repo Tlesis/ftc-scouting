@@ -1,32 +1,25 @@
 <script lang="ts">
     import { scoutingData } from "$lib/stores";
 
-    let first = ($scoutingData.autoYellow[0] === -1 && $scoutingData.autoYellow[1] === -1) ? true : false;
+    const compare = (i: number, j: number) => {
+        return ($scoutingData.autoYellow[0] === i) && ($scoutingData.autoYellow[1] === j);
+    }
 
-    let checkedColor = [
-        ["bg-w", "bg-w", "bg-w", "bg-w", "bg-w", "bg-w"],
-        ["bg-w", "bg-w", "bg-w", "bg-w", "bg-w", "bg-w", "bg-w"],
-        ["bg-w", "bg-w", "bg-w", "bg-w", "bg-w", "bg-w"],
-    ];
+    let first: boolean | null = (compare(-1, -1) ? true : false);
 
     const colorTailwind = (i: number, j: number) => {
-        if ($scoutingData.autoYellow[0] === i && $scoutingData.autoYellow[1] === j) {
+        if (compare(i, j)) {
             $scoutingData.autoYellow = [-1, -1];
+            first = false;
+            return;
         }
 
-        if (first) {
-            checkedColor[i][j] = "bg-yellow-400";
+
+        if (first === true) {
             $scoutingData.autoYellow = [i, j];
-        } else {
-            checkedColor[i][j] = "bg-w";
+            first = false;
         }
-        first = false;
     };
-
-    (() => {
-        if ($scoutingData.autoYellow[0] !== -1 && $scoutingData.autoYellow[1] !== -1)
-            checkedColor[$scoutingData.autoYellow[0]][$scoutingData.autoYellow[1]] = "bg-yellow-400";
-    })();
 </script>
 
 
@@ -41,7 +34,11 @@
                     id="autoBackdrop"
                     bind:checked={pixelSpot}
                     on:change={() => colorTailwind(i, j)}
-                    class={`appearance-none rounded shadow-sm p-5 checked:${checkedColor[i][j]} bg-inactive`}>
+                    class={`appearance-none rounded shadow-sm p-5 checked:${
+                        ((($scoutingData.autoYellow[0] === i) && ($scoutingData.autoYellow[1] === j))) ?
+                        "bg-yellow-400" :
+                        "bg-w"}
+                        bg-inactive`}>
             {/each}
         </div>
     {/each}
