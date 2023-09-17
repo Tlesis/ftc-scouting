@@ -8,7 +8,7 @@ export const EVENT = {
 export const fetchOptions = {
     headers: {
         "accept": "application/json",
-        "Authorization": `Basic ${Buffer.from(`${PUBLIC_FTC_USERNAME}:${PUBLIC_FTC_API_KEY}`).toString("base64")}`
+        "Authorization": `Basic ${btoa(`${PUBLIC_FTC_USERNAME}:${PUBLIC_FTC_API_KEY}`)}`
     }
 };
 
@@ -39,14 +39,37 @@ export interface Schedule {
     scoreBlueEndgame:         number | null;
     redWins:                  boolean | null;
     blueWins:                 boolean | null;
-    teams:                    Team[];
+    teams:                    MatchTeam[];
 }
 
-export interface Team {
+export interface MatchTeam {
     teamNumber: number;
     station:    string;
     surrogate:  boolean;
     noShow:     boolean;
     dq:         boolean;
     onField:    boolean;
+}
+
+export interface FTCTeam {
+    teams:          Team[];
+    teamCountTotal: number;
+    teamCountPage:  number;
+    pageCurrent:    number;
+    pageTotal:      number;
+}
+
+export interface Team {
+    teamNumber:   number;
+    nameFull:     string;
+    nameShort:    string;
+    schoolName:   string;
+    city:         string;
+    stateProv:    string;
+    country:      string;
+    website:      string;
+    rookieYear:   number;
+    robotName:    string;
+    districtCode: string;
+    homeCMP:      string;
 }

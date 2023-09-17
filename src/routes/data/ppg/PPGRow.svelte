@@ -1,9 +1,11 @@
 <script lang="ts">
     import { ppgStore } from "$lib/stores";
-    import type { TOATeams } from "$lib/types";
 
     export let index: number;
-    export let teams: TOATeams[];
+    export let teams: {
+        teamNumber: number;
+        teamName: string;
+    }[];
 
     const ppg = $ppgStore[index];
     const percentileColor = (percentile: number) => {
@@ -47,7 +49,7 @@
     <td class="border-t">{ppg.teamid}</td>
     <td class="border-t border-x break-words">
         <a href={`https://theorangealliance.org/teams/${ppg.teamid}`} class="underline text-link font-normal">
-            {teams.find((team) => team.team_number === ppg.teamid)?.team.team_name_short ?? ppg.teamid.toString()}
+            {teams.find((team) => team.teamNumber === ppg.teamid)?.teamName ?? ppg.teamid.toString()}
         </a>
     </td>
     <td class="border-t border-x">{index + 1}</td>

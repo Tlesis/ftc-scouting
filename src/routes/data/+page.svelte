@@ -3,7 +3,7 @@
 </svelte:head>
 
 <script lang="ts">
-    import { AllianceColor, EVENT_KEY } from "$lib/types";
+    import { AllianceColor } from "$lib/types";
     import type { PageData } from "./$types";
 
     export let data: PageData;
@@ -63,7 +63,7 @@
         <tbody class="border-2">
             {#each data.existing as team}
                 <tr class="text-w border border-slate-500">
-                    <td><a href={`https://theorangealliance.org/events/${EVENT_KEY}/matches`} target="_blank">{team.matchid}</a></td>
+                    <td>{team.matchid}</td>
                     <td class="inline-flex items-center">
                         <svg class="w-3 h-3 mr-1 mt-px">
                             <circle cx="5" cy="5" r="5" class={`fill-current ${(team.allianceColor === AllianceColor.red) ? "text-red-500" : "text-blue-600"}`}></circle>
