@@ -48,7 +48,7 @@
 <tr>
     <td class="border-t">{ppg.teamid}</td>
     <td class="border-t border-x break-words">
-        <a href={`https://theorangealliance.org/teams/${ppg.teamid}`} class="underline text-link font-normal">
+        <a href={`https://theorangealliance.org/teams/${ppg.teamid}`} target="_blank" class="underline text-link font-normal">
             {teams.find((team) => team.teamNumber === ppg.teamid)?.teamName ?? ppg.teamid.toString()}
         </a>
     </td>

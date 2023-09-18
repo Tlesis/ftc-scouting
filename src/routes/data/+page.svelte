@@ -46,14 +46,14 @@
     });
 </script>
 
-<button class=" text-w text-center text-lg shadow-sm rounded bg-active px-4 py-2 m-4 max-sm:hidden"
+<button class=" text-w text-center text-lg shadow-sm rounded bg-active px-4 py-2 m-4"
     on:click={download}>
     Download CSV
 </button>
 
 <h1 class="text-w text-center text-5xl md:-mt-10 max-md:mt-4 mb-8 font-thin">Collected Data</h1>
 
-<div class="flex justify-center mb-8 max-sm:hidden">
+<div class="flex justify-center mb-8">
     <table class="text-center mx-16 w-full">
         <thead class="text-w">
             {#each headers as header}
@@ -121,8 +121,4 @@
             {/each}
         </tbody>
     </table>
-</div>
-
-<div class="sm:hidden text-w text-center">
-    Phone Landscape To See Data
 </div>
