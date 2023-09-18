@@ -7,7 +7,7 @@ export const load = (async ({ locals: { supabase } }) => {
 
     const [matches, existing] = await Promise.all([
 
-        fetch(`https://ftc-api.firstinspires.org/v2.0/${EVENT.season}/schedule/${EVENT.code}/qual/hybrid`, fetchOptions)
+        fetch(`https://ftc-api.firstinspires.org/v2.0/${EVENT.season}/schedule/${EVENT.eventCode}/qual/hybrid`, fetchOptions)
             .then((response) => response.json() as Promise<FTCSchedule>)
             .then((response) => response.schedule.map((match) => ({
                 matchNumber: match.matchNumber,
@@ -50,7 +50,7 @@ export const actions = {
         }
 
         /* upload data */
-        const matchs = await fetch(`https://ftc-api.firstinspires.org/v2.0/${EVENT.season}/schedule/${EVENT.code}/qual/hybrid`, fetchOptions)
+        const matchs = await fetch(`https://ftc-api.firstinspires.org/v2.0/${EVENT.season}/schedule/${EVENT.eventCode}/qual/hybrid`, fetchOptions)
             .then((response) => {
                 if (!response.ok) {
                     throw fail(500, { error: "failed to fetch matches" });

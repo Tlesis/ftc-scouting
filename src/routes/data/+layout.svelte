@@ -6,13 +6,11 @@
     export let data: LayoutData;
 
     // reduce ppg data to an array of teamids that have data
-    const searchableTeams = data.ppg.map((p) => p.teamid);
+    const ppg = data.ppg.sort((a, b) => b.pointTotal - a.pointTotal);
+    const searchableTeams = ppg.map((p) => p.teamid);
+
 
     const search = () => {
-        /*
-        * look for team an id that matches what was typed in the searchData field
-        * if not found set the searchData to null to clear field and return
-        */
         if (!searchableTeams.some((teamid) => teamid === searchData)) {
             searchData = null;
             return;
@@ -21,6 +19,12 @@
         // if team is found then redirect user there
         // location.href=`/data/team/${searchData}`;
     };
+
+    $: availableTeams = searchableTeams.filter((teamid) => teamid.toString().startsWith(searchData?.toString() ?? "")).reduce((acc, teamid) => {
+        // acc.push(`<a href="/data/team/${teamid}" class="block px-4 py-1 hover:bg-[#cfcfcf]">${teamid}</a>`);
+        acc.push(`<span class="block px-4 py-1 hover:bg-[#cfcfcf]">${teamid}</span>`);
+        return acc;
+    }, [] as string[]).slice(0, 5);
 </script>
 
 <nav class="w-full bg-nav shadow-lg flex border-b rounded-b top-0">
@@ -37,16 +41,18 @@
             PPG
             <span class="block max-w-0 group-hover:max-w-full transition-all duration-200 h-px bg-w max-md:hidden"></span>
         </a>
-        <!-- TODO: make matches page -->
-        <!-- <a href="/data/matches" class="max-md:hidden group my-5 transition duration-300" data-sveltekit-reload>
+        <a href="/data/matches" class="max-md:hidden group my-5 transition duration-300" data-sveltekit-reload>
             Matches
             <span class="block max-w-0 group-hover:max-w-full transition-all duration-200 h-px bg-w"></span>
-        </a> -->
+        </a>
     </div>
-    <!-- TODO: have an autocomplete based off of `existing` -->
+
     <form autocomplete="off" class="max-md:hidden ml-auto mr-8 m-0 p-0" on:submit|preventDefault={search}>
         <input type="number" bind:value={searchData} placeholder="Team Search..."
-        class="my-4 rounded px-2 py-1 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+        class="mt-4 rounded px-2 py-1 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none">
+        <div class={`mt-1 bg-w rounded absolute ${searchData ? "" : "hidden"}`}>
+            {@html availableTeams.join('\n')}
+        </div>
     </form>
 </nav>
 

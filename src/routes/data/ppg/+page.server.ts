@@ -7,7 +7,7 @@ export const load = (async ({ locals: { supabase } }) => {
 
     const [ teams, ppg ] = await Promise.all([
 
-        fetch(`https://ftc-api.firstinspires.org/v2.0/${EVENT.season}/teams?eventCode=${EVENT.code}`, fetchOptions)
+        fetch(`https://ftc-api.firstinspires.org/v2.0/${EVENT.season}/teams?eventCode=${EVENT.eventCode}`, fetchOptions)
             .then((response) => response.json() as Promise<FTCTeam>)
             .then((response) => response.teams.map((team) => ({
                 teamNumber: team.teamNumber,

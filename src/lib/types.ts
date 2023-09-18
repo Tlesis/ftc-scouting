@@ -2,7 +2,7 @@ import { PUBLIC_FTC_API_KEY, PUBLIC_FTC_USERNAME } from "$env/static/public";
 
 export const EVENT = {
     season: 2022,
-    code: "USMOKSKCWLT"
+    eventCode: "USMOKSKCWLT"
 };
 
 export const fetchOptions = {
@@ -52,14 +52,14 @@ export interface MatchTeam {
 }
 
 export interface FTCTeam {
-    teams:          Team[];
+    teams:          TeamTeam[];
     teamCountTotal: number;
     teamCountPage:  number;
     pageCurrent:    number;
     pageTotal:      number;
 }
 
-export interface Team {
+export interface TeamTeam {
     teamNumber:   number;
     nameFull:     string;
     nameShort:    string;
@@ -72,4 +72,64 @@ export interface Team {
     robotName:    string;
     districtCode: string;
     homeCMP:      string;
+}
+
+export interface FTCMatch {
+    matches: Match[];
+}
+
+export interface Match {
+    actualStartTime: Date | null;
+    description:     string;
+    tournamentLevel: string;
+    series:          number;
+    matchNumber:     number;
+    scoreRedFinal:   number | null;
+    scoreRedFoul:    number | null;
+    scoreRedAuto:    number | null;
+    scoreBlueFinal:  number | null;
+    scoreBlueFoul:   number | null;
+    scoreBlueAuto:   number | null;
+    postResultTime:  Date | null;
+    teams:           Team[];
+    modifiedOn:      Date | null;
+}
+
+export interface Team {
+    teamNumber: number;
+    station:    string;
+    dq:         boolean;
+    onField:    boolean;
+}
+
+export interface FTCEvent {
+    events:     Event[];
+    eventCount: number;
+}
+
+export interface Event {
+    eventId:       string;
+    code:          string;
+    divisionCode:  string| null;
+    name:          string;
+    remote:        boolean;
+    hybrid:        boolean;
+    fieldCount:    number;
+    published:     boolean;
+    type:          string;
+    typeName:      string;
+    regionCode:    string;
+    leagueCode:    string;
+    districtCode:  string;
+    venue:         string;
+    address:       string;
+    city:          string;
+    stateprov:     string;
+    country:       string;
+    website:       string;
+    liveStreamUrl: string;
+    webcasts:      string[] | null;
+    timezone:      string;
+    dateStart:     Date | null;
+    dateEnd:       Date | null;
 }
