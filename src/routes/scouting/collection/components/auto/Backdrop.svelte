@@ -5,7 +5,7 @@
         return ($scoutingData.autoYellow[0] === i) && ($scoutingData.autoYellow[1] === j);
     }
 
-    let first: boolean | null = (compare(-1, -1) ? true : false);
+    let first: boolean = (compare(-1, -1) ? true : false);
 
     const colorTailwind = (i: number, j: number) => {
         if (compare(i, j)) {
@@ -34,10 +34,10 @@
                     id="autoBackdrop"
                     bind:checked={pixelSpot}
                     on:change={() => colorTailwind(i, j)}
-                    class={`appearance-none rounded shadow-sm p-5 checked:${
+                    class={`appearance-none rounded shadow-sm p-5 ${
                         ((($scoutingData.autoYellow[0] === i) && ($scoutingData.autoYellow[1] === j))) ?
-                        "bg-yellow-400" :
-                        "bg-w"}
+                        "checked:bg-yellow-400" :
+                        "checked:bg-w"}
                         bg-inactive`}>
             {/each}
         </div>
